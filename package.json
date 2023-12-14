@@ -1,0 +1,25 @@
+{
+  "name": "nail-clipper-screwdriver",
+  "version": "0.2.0",
+  "private": true,
+  "description": "A Vite plugin pretending to be a static site generator.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/almibe/nail-clipper-screwdriver.git"
+  },
+  "author": "almibe.dev",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/almibe/nail-clipper-screwdriver/issues"
+  },
+  "homepage": "https://github.com/almibe/nail-clipper-screwdriver#readme",
+  "dependencies": {
+    "glob": "^10.3.10",
+    "marked": "^11.1.0",
+    "mustache": "^4.2.0"
+  }
+}
