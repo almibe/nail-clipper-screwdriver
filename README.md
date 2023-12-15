@@ -21,6 +21,6 @@ Usually you'll want to wrap title in two sets of braces and the body in three.
 
 ## Content
 
-Content in Nail Clipper Screwdriver is stored in spicy *.md files.
+Content in Nail Clipper Screwdriver is stored in *.md files.
 Besides all the markdown features the top of the file contains a frontmatter section.
-This section  
+This section contains key value pairs that include the title and which layout to use.

@@ -18,32 +18,37 @@ export function nailClipperScrewdriver(config) {
       inputOptions.input = processDocs(config);
     },
 
-    // Handles live code changes to content files.
     handleHotUpdate(ctx) {
-      console.log(`In HHU ${ctx}`);
+      if (ctx.file.endsWith(".md")) {
+        processDoc(ctx.file, config);
+      }
     },
   };
+}
+
+function processDoc(path, config) {
+  let data = processContent(fs.readFileSync(path, 'utf-8'));
+  data.data = config.data;
+  let layout = data.layout ? data.layout : config.layout;
+  let layoutTemplate = fs.readFileSync(
+    resolve(config.rootDir, './src/layout/' + layout),
+    'utf-8',
+  );
+
+  data['body'] = Mustache.render(data.body, data);
+  let output = Mustache.render(layoutTemplate, data);
+  let fileName = path.replace('.md', '.html');
+  fs.writeFileSync(fileName, output);
 }
 
 function processDocs(config) {
   let htmlFiles = [];
   let paths = globSync('**/*.md', { ignore: ['node_modules/**', 'README.md'] });
 
-  paths.forEach(function (path) {
-    let data = processContent(fs.readFileSync(path, 'utf-8'));
-    data.data = config.data;
-    let layout = data.layout ? data.layout : config.layout;
-    let layoutTemplate = fs.readFileSync(
-      resolve(config.rootDir, './src/layout/' + layout),
-      'utf-8',
-    );
-
-    data['body'] = Mustache.render(data.body, data);
-    let output = Mustache.render(layoutTemplate, data);
-
+  paths.forEach(path => {
+    processDoc(path, config);
     let fileName = path.replace('.md', '.html');
-    htmlFiles.push(fileName);
-    fs.writeFileSync(fileName, output);
+    htmlFiles.push(fileName);  
   });
   return htmlFiles;
 }
