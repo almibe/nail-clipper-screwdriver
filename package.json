@@ -1,6 +1,6 @@
 {
   "name": "nail-clipper-screwdriver",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "A Vite plugin pretending to be a static site generator.",
   "main": "index.js",
   "type": "module",
