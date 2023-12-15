@@ -8,6 +8,7 @@ import { globSync } from 'glob';
  * Takes a single config object with the following fields
  *  - layout: the default layout
  *  - data: globalData available to all pages
+ *  - rootDir: the root directory
  */
 export function nailClipperScrewdriver(config) {
   return {
@@ -33,7 +34,7 @@ function processDocs(config) {
     data.data = config.data;
     let layout = data.layout ? data.layout : config.layout;
     let layoutTemplate = fs.readFileSync(
-      resolve(__dirname, './src/layout/' + layout),
+      resolve(config.rootDir, './src/layout/' + layout),
       'utf-8',
     );
 
